@@ -101,28 +101,28 @@ class untitled(arcade.Window):
     def follow(self, enemy):
         vector = untitled.get_vector(self, enemy)
         if self.get_radius(self.player.position, enemy.position)<15 and self.get_radius(self.player.position, enemy.position)>5:
-            if self.player_pos[0] > enemy.position[0] and self.player_pos[1] > enemy.position[1]: #going upright
+            if self.player.position[0] > enemy.position[0] and self.player.position[1] > enemy.position[1]: #going upright
                 enemy.change_y = MOVEMENT_SPEED*vector[1]*ENEMY_SPEED_MODIFIER
                 enemy.change_x = MOVEMENT_SPEED*vector[0]*ENEMY_SPEED_MODIFIER
                 if vector[0] > vector[1]:
                     enemy.state = 1
                 else:
                     enemy.state = 3
-            elif self.player_pos[0] < enemy.position[0] and self.player_pos[1] > enemy.position[1]: #going upleft
+            elif self.player.position[0] < enemy.position[0] and self.player.position[1] > enemy.position[1]: #going upleft
                 enemy.change_y = MOVEMENT_SPEED*vector[1]*ENEMY_SPEED_MODIFIER
                 enemy.change_x = -MOVEMENT_SPEED*vector[0]*ENEMY_SPEED_MODIFIER
                 if vector[0] > vector[1]:
                     enemy.state = 2
                 else:
                     enemy.state = 3
-            elif self.player_pos[0] > enemy.position[0] and self.player_pos[1] < enemy.position[1]: #going downright
+            elif self.player.position[0] > enemy.position[0] and self.player.position[1] < enemy.position[1]: #going downright
                 enemy.change_y = -MOVEMENT_SPEED*vector[1]*ENEMY_SPEED_MODIFIER
                 enemy.change_x = MOVEMENT_SPEED*vector[0]*ENEMY_SPEED_MODIFIER
                 if vector[0] > vector[1]:
                     enemy.state = 1
                 else:
                     enemy.state = 4
-            elif self.player_pos[0] < enemy.position[0] and self.player_pos[1] < enemy.position[1]: #going downleft
+            elif self.player.position[0] < enemy.position[0] and self.player.position[1] < enemy.position[1]: #going downleft
                 enemy.change_y = -MOVEMENT_SPEED*vector[1]*ENEMY_SPEED_MODIFIER
                 enemy.change_x = -MOVEMENT_SPEED*vector[0]*ENEMY_SPEED_MODIFIER
                 if vector[0] > vector[1]:
@@ -165,6 +165,9 @@ class untitled(arcade.Window):
             self.player.change_x = -MOVEMENT_SPEED*PLAYER_SPEED_MODIFIER
         elif key == arcade.key.RIGHT:
             self.player.change_x = MOVEMENT_SPEED*PLAYER_SPEED_MODIFIER
+        if key == arcade.key.Q:
+            self.enemy.change_x = 100
+            self.enemy.change_y = 100
 
     def on_key_release(self, key, modifiers):
         if key == arcade.key.UP or key == arcade.key.DOWN:
@@ -187,6 +190,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 
